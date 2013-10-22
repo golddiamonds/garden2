@@ -11,6 +11,7 @@ public class Game {
 	private Garden garden;
 	private Store store;
 	private Scanner scanner = new Scanner(System.in);
+	private int days = 0;
 	
 	public Game(String name){
 		
@@ -45,6 +46,9 @@ public class Game {
 			System.out.println("Fertilizing plants!");
 			fertilize();
 			break;
+		case "harvest":
+			harvest();
+			break;
 		case "buy":
 			buy();
 			break;
@@ -63,17 +67,25 @@ public class Game {
 		}
 	}
 	
+	public void printStats(){
+		System.out.println("Days: " + this.days + "  Gold: " + player.getMoney());
+	}
+	
 	public void printGarden(){
 		Plant[][] gardenArray = garden.getGarden();
 		int xco = garden.getX();
 		int yco = garden.getY();
+		System.out.println("    0     1     2     3     4");
 		for (int y = 0; y < yco; y++){
 			for (int x = 0; x < xco; x++){
-				if (x < (xco - 1)){
-					System.out.print("[" + gardenArray[x][y].getSymbol() + "] ");
+				if (x == 0){
+					System.out.print(y + " [" + gardenArray[x][y].getStatus(1) + gardenArray[x][y].getSymbol() + gardenArray[x][y].getStatus(2) + "] " );
+				}
+				if (x > 0 && x < (xco - 1)){
+					System.out.print("[" + gardenArray[x][y].getStatus(1) + gardenArray[x][y].getSymbol() + gardenArray[x][y].getStatus(2) + "] ");
 				}
 				if (x == (xco -1 )){
-					System.out.println("[" + gardenArray[x][y].getSymbol() + "]");
+					System.out.println("[" + gardenArray[x][y].getStatus(1) + gardenArray[x][y].getSymbol() + gardenArray[x][y].getStatus(2) + "]");
 				}
 			}
 		}
@@ -97,19 +109,38 @@ public class Game {
 	
 	private void water(){
 		System.out.println("Plants have been watered");
+		garden.waterGarden();
 	}
 	
 	private void fertilize(){
-		System.out.println("Plant have been fertilized");
+		System.out.println("Plants have been fertilized");
+		garden.fertilizeGarden();
+	}
+	
+	private void harvest(){
+		System.out.println("Which plant would you like to harvest? ");
+		System.out.print("X: ");
+		int xcord = scanner.nextInt();
+		System.out.print("Y: ");
+		int ycord = scanner.nextInt();
+		//make sure it's not a Plant type and make sure that it is ripe
+		if (garden.getGarden()[xcord][ycord].getSymbol() != "_" && garden.getGarden()[xcord][ycord].checkRipe()){
+			//remove plant by setting it to generic Plant() using "harvest"
+			garden.plant(xcord, ycord, "harvest");
+			//add money for harvesting
+			player.setMoney(10);
+		} else {
+			System.out.println("You must choose a ripe plant.");
+		}
 	}
 	
 	private void buy(){
 		System.out.println("What do you want to buy?");
-		
 	}
 	
 	private void inventory(){
 		System.out.println("Listing your inventory...");
+		player.iterateOverInventory();
 	}
 	
 	private void waitTurn(){
@@ -117,6 +148,7 @@ public class Game {
 		System.out.print("How many days do you want to wait? ");
 		waitturns = scanner.nextInt();
 		garden.growGarden(waitturns);
+		this.days += waitturns;
 		
 	}
 	

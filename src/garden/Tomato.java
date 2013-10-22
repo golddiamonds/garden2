@@ -8,7 +8,6 @@ public class Tomato extends Plant {
 		this.death = 50;
 		this.babySym = "t";
 		this.maturitySym = "T";
-		this.deathSym = "~T";
 	}
 
 

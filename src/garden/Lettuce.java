@@ -8,7 +8,6 @@ public class Lettuce extends Plant {
 		this.death = 50;
 		this.babySym = "l";
 		this.maturitySym = "L";
-		this.deathSym = "~L";
 	}
 
 }

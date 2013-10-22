@@ -1,6 +1,10 @@
 package garden;
 
-//abstract class used as template for items
-public abstract class Item {
+//class used as template for items
+public class Item {
+	
+	public String getType(){
+		return "Nothing";
+	}
 
 }

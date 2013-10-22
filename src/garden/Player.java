@@ -10,6 +10,7 @@ public class Player {
 	public Player(String name){
 		
 		this.name = name;
+		this.inventory = new Inventory();
 	}
 	
 	public String getName(){
@@ -32,9 +33,7 @@ public class Player {
 	public void iterateOverInventory(){
 		int length = this.inventory.getSize();
 		for (int i = 0; i < length; i++){
-			
 			System.out.println(this.inventory.getInventory(i));
-			
 		}
 	}
 

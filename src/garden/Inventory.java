@@ -6,14 +6,22 @@ import java.util.ArrayList;
 public class Inventory {
 	
 	//set a size
-	private int size = 10;
+	private int size;
 	
 	//ArrayList to hold item objects
-	private ArrayList<Item> inventory = new ArrayList<Item>(size);
+	private ArrayList<Item> inventory;
 	
+	//constructor
+	public Inventory(){
+		this.size = 10;
+		this.inventory = new ArrayList<Item>(this.size);
+		for (int i = 1; i <= size; i++){
+			inventory.add(new Item());
+		}
+	}
 	//get method for inventory
-	public Item getInventory(int index) {
-		return inventory.get(index);
+	public String getInventory(int index) {
+		return inventory.get(index).getType();
 	}
 	
 	//set method for inventory

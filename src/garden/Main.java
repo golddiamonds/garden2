@@ -20,6 +20,7 @@ public class Main {
 		//begin game loop
 		while (action.equals("quit") == false){
 			game.printGarden();
+			game.printStats();
 			System.out.print("What next? ");
 			action = scanner.next();
 			game.actionLogic(action);

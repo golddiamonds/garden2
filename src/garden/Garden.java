@@ -25,18 +25,28 @@ public class Garden {
 		
 		if (plant.equals("tomato")){
 			System.out.println("Planting tomato seeds.");
-			garden[y][x] = new Tomato();
+			garden[x][y] = new Tomato();
 		}
 		
 		if (plant.equals("lettuce")){
 			System.out.println("Planting lettuce seeds.");
-			garden[y][x] = new Lettuce();
+			garden[x][y] = new Lettuce();
 		}
 		
 		if (plant.equals("potato")){
 			System.out.println("Planting potatoes.");
-			garden[y][x] = new Potato();
-		}	
+			garden[x][y] = new Potato();
+		}
+		
+		if (plant.equals("ghostpepper")){
+			System.out.println("Planting ghost pepper.");
+			garden[x][y] = new GhostPepper();
+		}
+		
+		if (plant.equals("harvest")){
+			System.out.println("Harvesting!");
+			garden[x][y] = new Plant();
+		}
 	}
 	
 	public Plant[][] getGarden(){
@@ -50,6 +60,22 @@ public class Garden {
 			}
 		}
 		System.out.println("Your garden has grown for " + days + " days.");
+	}
+	
+	public void waterGarden(){
+		for (int y = 0; y < yco; y++){
+			for (int x = 0; x < xco; x++){
+				this.garden[x][y].waterPlant(); 
+			}
+		}
+	}
+	
+	public void fertilizeGarden(){
+		for (int y = 0; y < yco; y++){
+			for (int x = 0; x < xco; x++){
+				this.garden[x][y].fertilizePlant(); 
+			}
+		}
 	}
 	
 	public int getX(){
