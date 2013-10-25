@@ -153,7 +153,12 @@ public class Game {
 	}
 	
 	private void help(){
-		System.out.println("Type: buy, plant, or wait.");
+		System.out.println("The following words allow you to garden:");
+		System.out.println("plant - choose location and plant type to plant.");
+		System.out.println("water - water your garden.");
+		System.out.println("fertilize - add fertilizer to your garden.");
+		System.out.println("wait - let your garden grow uninterrupted for a select number of days.");
+		System.out.println("harvest - reap what you have sown.");
 		
 	}
 
